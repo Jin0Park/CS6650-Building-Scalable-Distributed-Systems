@@ -20,8 +20,6 @@ public class TwinderServlet extends HttpServlet {
     protected static final int UNSUCCESSFULRESCODE = 404;
     protected static final int INVALIDRESCODE = 400;
 
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");

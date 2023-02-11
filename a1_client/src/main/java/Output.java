@@ -35,12 +35,4 @@ public class Output {
     public String[] getData() {
         return new String[]{String.valueOf(getStartTime()), getRequestType(), String.valueOf(getLatency()), String.valueOf(getResponseCode())};
     }
-    public String printData() {
-        String[] data = getData();
-        String result = "";
-        for (int i = 0; i < 4; i ++) {
-            result += data[i] + ",";
-        }
-        return result;
-    }
 }
