@@ -1,61 +1,57 @@
-    import io.swagger.client.ApiException;
+package part2;
+
+import helper.*;
+import io.swagger.client.ApiException;
 import io.swagger.client.ApiResponse;
 import io.swagger.client.api.SwipeApi;
 import io.swagger.client.model.SwipeDetails;
-
 import java.util.ArrayList;
-
+/**
+ *  part2.Part2ThreadConsumer generates random values for swipe, swiperID, swipeeID, comment. Also, receives response code
+ *  from the server and stores the information using helper.Output class.
+ *  The methods that each thread will perform for part2.
+ */
 public class Part2ThreadConsumer {
     protected static final int SWIPERIDLIMIT = 5000;
     protected static final int SWIPEEIDLIMIT = 1000000;
     protected static final int COMMENTLIMIT = 256;
     protected static final int RETRY = 5;
-    protected Client counter;
+    protected Part2Client counter;
     protected SwipeApi apiInstance;
-    long totalResTime = 0;
-    long medianResTime = 0;
-    long minResTime = (long) Double.POSITIVE_INFINITY;
-    long maxResTime = (long) Double.NEGATIVE_INFINITY;
 
-    public Part2ThreadConsumer(Client counter, SwipeApi apiInstance) {
+    public Part2ThreadConsumer(Part2Client counter, SwipeApi apiInstance) {
         this.counter = counter;
         this.apiInstance = apiInstance;
     }
 
     final static RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
 
-    public void run(ArrayList<Output> latencyRecords, int numOfReq){
+    public void run(ArrayList<Output> latencyRecords, int numOfReq, boolean isPart1){
         for (int j = 0; j < numOfReq; j++) {
             Output output = new Output();
+            SwipeDetails body = new SwipeDetails();
 
             String leftOrRight = randomDataGenerator.randomLeftOrRightGenerator();
-
-            SwipeDetails body = new SwipeDetails();
             body.setSwiper(randomDataGenerator.randomNumGenerator(1, SWIPERIDLIMIT));
             body.setSwipee(randomDataGenerator.randomNumGenerator(1, SWIPEEIDLIMIT));
             body.setComment(randomDataGenerator.randomStringGenerator(COMMENTLIMIT));
 
-            getResponse(latencyRecords, body, leftOrRight, output);
-
+            getResponsePart2(latencyRecords, body, leftOrRight, output);
         }
     }
 
-    public void getResponse(ArrayList<Output> latencyRecords, SwipeDetails body, String leftOrRight, Output output){
+    public void getResponsePart2(ArrayList<Output> latencyRecords, SwipeDetails body, String leftOrRight, Output output){
         long startTime = System.currentTimeMillis();
         output.setStartTime(startTime);
         for (int k = 0; k < RETRY; k++) {
             try {
                 ApiResponse r = apiInstance.swipeWithHttpInfo(body, leftOrRight);
-                output.setLatency(System.currentTimeMillis() - startTime);
-                System.out.println(output.getLatency());
+                long endTime = System.currentTimeMillis();
+                output.setLatency(endTime - startTime);
                 if (r.getStatusCode() == 201 || r.getStatusCode() == 200) {
-                    int listSize = latencyRecords.size();
                     output.setResponseCode(r.getStatusCode());
                     latencyRecords.add(output);
-                    if (listSize < latencyRecords.size()) {
-                        counter.inc();
-                    }
-                    //System.out.println(counter.getVal() + "," + latencyRecords.size() + "," + output.printData());
+                    counter.inc();
                     break;
                 }
             } catch (ApiException e) {
@@ -63,6 +59,7 @@ public class Part2ThreadConsumer {
                 System.err.println(e.getCode());
                 System.err.println(e.getResponseBody());
                 e.printStackTrace();
+                latencyRecords.add(output);
             }
         }
     }

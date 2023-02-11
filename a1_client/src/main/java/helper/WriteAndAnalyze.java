@@ -1,11 +1,15 @@
+package helper;
+
 import com.opencsv.CSVWriter;
+
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
-
+/**
+ *  helper.WriteAndAnalyze class writes stored information (start time, request type, latency, respnose code) into a CSV file
+ *  and analyze the performance of operation.
+ */
 public class WriteAndAnalyze {
     private ArrayList<Output> records;
     private long totalResTime = 0;
@@ -81,18 +85,32 @@ public class WriteAndAnalyze {
         return minStart;
     }
 
+    public Map<Long, Integer> convertData() {
+        Map<Long, Integer> info = new HashMap<>();
+        long minStart = getMinStartTime();
+        for (int i = 0; i < this.records.size(); i++) {
+            Output currOutput = this.records.get(i);
+            if (currOutput != null) {
+                long currTime = currOutput.getStartTime() - minStart;
+                if (info.containsKey(currTime)) {
+                    info.put(currTime, info.get(currTime) + 1);
+                } else {
+                    info.put(currTime, 1);
+                }
+            }
+        }
+        return info;
+    }
+
     public void writeData(String filePath) {
         File file = new File(filePath);
         try {
             FileWriter outputfile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputfile);
             String[] header = {"start time", "request type", "latency", "response code"};
-
             writer.writeNext(header);
             int i = 0;
             long minStart = getMinStartTime();
-            System.out.println(minStart);
-            System.out.println();
             while (i < this.records.size()) {
                 Output currOutput = this.records.get(i);
                 if (currOutput != null) {
@@ -108,5 +126,4 @@ public class WriteAndAnalyze {
             e.printStackTrace();
         }
     }
-
 }

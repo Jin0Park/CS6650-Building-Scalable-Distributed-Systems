@@ -1,3 +1,8 @@
+package helper;
+
+/**
+ *  helper.Output class stores start time, request type, latency, response code.
+ */
 public class Output {
     long startTime;
     String requestType = "post";

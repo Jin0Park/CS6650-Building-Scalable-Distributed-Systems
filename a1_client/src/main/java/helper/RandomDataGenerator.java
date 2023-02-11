@@ -1,8 +1,11 @@
-import java.security.SecureRandom;
-import java.util.List;
+package helper;
 
+import java.security.SecureRandom;
+/**
+ *  helper.RandomDataGenerator contains methods that generate random numbers for swipe, swiperID, swipeeID, comment.
+ */
 public class RandomDataGenerator {
-    static private SecureRandom rand = new SecureRandom();
+    static public SecureRandom rand = new SecureRandom();
 
     public String randomLeftOrRightGenerator() {
         int num = rand.nextInt();
