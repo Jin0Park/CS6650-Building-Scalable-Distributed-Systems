@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SwipeConsumerGet100LikedUsers:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/SwipeConsumerGet100LikedUsers_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SwipeConsumerGet100LikedUsers" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="SwipeConsumerGet100LikedUsers/web/Web" />
+    </root>
+  </artifact>
+</component>
