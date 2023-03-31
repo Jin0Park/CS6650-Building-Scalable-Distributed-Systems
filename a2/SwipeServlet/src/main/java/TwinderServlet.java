@@ -25,11 +25,12 @@ public class TwinderServlet extends HttpServlet {
     protected static final int INVALIDRESCODE = 400;
     private final int NUMOFCHANNEL = 30;
     private final int PORT = 5672;
-    private final String RMQSERVERIP = "18.236.150.162";
+    private final String RMQSERVERIP = "34.219.154.72";
     protected static RMQChannelPool pool;
     protected Connection connection = null;
     protected ConnectionFactory factory = new ConnectionFactory();
     protected RMQChannelFactory cf = new RMQChannelFactory(connection);
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,8 +51,8 @@ public class TwinderServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         factory = new ConnectionFactory();
-        factory.setUsername("user1");
-        factory.setPassword("pass1");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
         factory.setVirtualHost("v1");
         factory.setHost(RMQSERVERIP);
         factory.setPort(PORT);
@@ -93,7 +94,7 @@ public class TwinderServlet extends HttpServlet {
                         validate.isCommentValid(status.getComment())) {
                     response.setStatus(SUCCESSFULRESCODE);
                     response.getOutputStream().print("Write Successful!");
-                    message = urlParts[2].toLowerCase() + "," + status.getSwiper() + "," + status.getSwipee() +
+                    message = urlParts[3].toLowerCase() + "," + status.getSwiper() + "," + status.getSwipee() +
                             "," + status.getComment();
                 } else {
                     response.setStatus(UNSUCCESSFULRESCODE);

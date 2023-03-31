@@ -10,6 +10,6 @@
 
     <servlet-mapping>
         <servlet-name>TwinderServlet</servlet-name>
-        <url-pattern>/twinders/*</url-pattern>
+        <url-pattern>/twinders/swipe/*</url-pattern>
     </servlet-mapping>
 </web-app>

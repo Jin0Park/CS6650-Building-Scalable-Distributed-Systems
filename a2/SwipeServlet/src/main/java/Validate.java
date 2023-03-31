@@ -6,11 +6,11 @@
  *  each object based on the given requirements.
  */
 public class Validate {
-    protected static final int SWIPERIDLIMIT = 5000;
-    protected static final int SWIPEEIDLIMIT = 1000000;
+    protected static final int SWIPERIDLIMIT = 50000;
+    protected static final int SWIPEEIDLIMIT = 50000;
     protected static final int COMMENTLIMIT = 256;
     protected boolean isUrlValid(String[] urlPath) {
-        if (urlPath.length >= 2 && (urlPath[2].equalsIgnoreCase("left") || urlPath[2].equalsIgnoreCase("right"))) {
+        if (urlPath.length >= 2 && (urlPath[3].equalsIgnoreCase("left") || urlPath[3].equalsIgnoreCase("right"))) {
             return true;
         }
         return false;

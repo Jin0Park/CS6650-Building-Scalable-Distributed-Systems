@@ -7,9 +7,9 @@ import part2.Part2Client;
  *  helper.Main class for Client package.
  */
 public class Main {
-    final static public int NUMTHREADS = 110;
-    final static public int NUMREQUESTS = 500000;
-    final static public String url = "http://35.93.29.226:8080/SwipeServlet_war/twinders/";
+    final static public int NUMTHREADS = 1;
+    final static public int NUMREQUESTS = 5;
+    final static public String url = "http://172.31.17.27:8080/SwipeServlet_war/twinders/";
 
     public static void main(String[] args) throws InterruptedException {
         Part1Client p1 = new Part1Client();
