@@ -5,8 +5,8 @@ public class Main {
     private static final int NUMTHREADS = 200;
     private static final String IP = "34.221.182.150";
     private static final String COLLECTION_NAME = "swipes";
-    private static final String MONGO_DB_ID = "jinp4095";
-    private static final String MONGO_DB_PW = "Frenchpie02";
+    private static final String MONGO_DB_ID = "mongoid";
+    private static final String MONGO_DB_PW = "mongopw";
     private static final String DB_NAME = "TwinderDB";
 
 

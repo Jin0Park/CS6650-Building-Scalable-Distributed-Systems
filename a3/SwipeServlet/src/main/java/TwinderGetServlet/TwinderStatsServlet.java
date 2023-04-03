@@ -16,8 +16,8 @@ import java.io.IOException;
 @WebServlet(name = "TwinderGetServlet.TwinderStatsServlet", value = "/TwinderGetServlet.TwinderStatsServlet")
 public class TwinderStatsServlet extends HttpServlet {
     private static final String COLLECTION_NAME = "swipes";
-    private static final String MONGO_DB_ID = "jinp4095";
-    private static final String MONGO_DB_PW = "Frenchpie02";
+    private static final String MONGO_DB_ID = "mongoid";
+    private static final String MONGO_DB_PW = "mongopw";
     private static final String DB_NAME = "TwinderDB";
     private static final String SWIPER_ID_KEY = "SwiperID";
     protected static final int SUCCESSFULRESCODE = 200;
