@@ -8,8 +8,28 @@
         <servlet-class>TwinderServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>TwinderStatsServlet</servlet-name>
+        <servlet-class>TwinderStatsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TwinderMatchServlet</servlet-name>
+        <servlet-class>TwinderMatchServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>TwinderServlet</servlet-name>
         <url-pattern>/twinders/swipe/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TwinderStatsServlet</servlet-name>
+        <url-pattern>/twinders/stats/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TwinderMatchServlet</servlet-name>
+        <url-pattern>/twinders/matches/*</url-pattern>
     </servlet-mapping>
 </web-app>

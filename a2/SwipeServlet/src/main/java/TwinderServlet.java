@@ -25,7 +25,7 @@ public class TwinderServlet extends HttpServlet {
     protected static final int INVALIDRESCODE = 400;
     private final int NUMOFCHANNEL = 30;
     private final int PORT = 5672;
-    private final String RMQSERVERIP = "34.219.154.72";
+    private final String RMQSERVERIP = "34.221.182.150";
     protected static RMQChannelPool pool;
     protected Connection connection = null;
     protected ConnectionFactory factory = new ConnectionFactory();
